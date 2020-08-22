@@ -113,6 +113,21 @@ final class TextFormattingTests: XCTestCase {
         XCTAssertEqual(html, "<p>Hello &lt; World &amp; &gt;</p>")
     }
 
+    func testSingleLineAside() {
+        let html = MarkdownParser().html(from: "^ Hello, world!")
+        XCTAssertEqual(html, "<aside><p>Hello, world!</p></aside>")
+    }
+
+    func testMultiLineAside() {
+        let html = MarkdownParser().html(from: """
+        ^ One
+        ^ Two
+        ^ Three
+        """)
+
+        XCTAssertEqual(html, "<aside><p>One Two Three</p></aside>")
+    }
+
     func testSingleLineBlockquote() {
         let html = MarkdownParser().html(from: "> Hello, world!")
         XCTAssertEqual(html, "<blockquote><p>Hello, world!</p></blockquote>")

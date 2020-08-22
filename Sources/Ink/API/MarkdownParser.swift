@@ -121,6 +121,7 @@ private extension MarkdownParser {
         case "#": return Heading.self
         case "!": return Image.self
         case "<": return HTML.self
+        case "^": return Aside.self
         case ">": return Blockquote.self
         case "^": return Aside.self
         case "`": return CodeBlock.self

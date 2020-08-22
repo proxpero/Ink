@@ -1,9 +1,8 @@
-//
-//  File.swift
-//  
-//
-//  Created by Todd Olsen on 4/17/20.
-//
+/**
+*  Ink
+*  Copyright (c) John Sundell 2019
+*  MIT license, see LICENSE file for details
+*/
 
 internal struct Aside: Fragment {
     var modifierTarget: Modifier.Target { .asides }
