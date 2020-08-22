@@ -122,6 +122,7 @@ private extension MarkdownParser {
         case "!": return Image.self
         case "<": return HTML.self
         case ">": return Blockquote.self
+        case "^": return Aside.self
         case "`": return CodeBlock.self
         case "-" where character == nextCharacter,
              "*" where character == nextCharacter:

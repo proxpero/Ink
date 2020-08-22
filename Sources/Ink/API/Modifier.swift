@@ -42,6 +42,7 @@ public extension Modifier {
     enum Target {
         case metadataKeys
         case metadataValues
+        case asides
         case blockquotes
         case codeBlocks
         case headings

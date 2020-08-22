@@ -127,6 +127,21 @@ final class TextFormattingTests: XCTestCase {
 
         XCTAssertEqual(html, "<blockquote><p>One Two Three</p></blockquote>")
     }
+    
+    func testSingleLineAside() {
+        let html = MarkdownParser().html(from: "^ Hello, world!")
+        XCTAssertEqual(html, "<aside><p>Hello, world!</p></aside>")
+    }
+
+    func testMultiLineAside() {
+        let html = MarkdownParser().html(from: """
+        ^ One
+        ^ Two
+        ^ Three
+        """)
+
+        XCTAssertEqual(html, "<aside><p>One Two Three</p></aside>")
+    }
 
     func testEscapingSymbolsWithBackslash() {
         let html = MarkdownParser().html(from: """
@@ -176,6 +191,8 @@ extension TextFormattingTests {
             ("testEncodingSpecialCharacters", testEncodingSpecialCharacters),
             ("testSingleLineBlockquote", testSingleLineBlockquote),
             ("testMultiLineBlockquote", testMultiLineBlockquote),
+            ("testSingleLineAside", testSingleLineAside),
+            ("testMultiLineAside", testMultiLineAside),
             ("testEscapingSymbolsWithBackslash", testEscapingSymbolsWithBackslash),
             ("testDoubleSpacedHardLinebreak", testDoubleSpacedHardLinebreak),
             ("testEscapedHardLinebreak", testEscapedHardLinebreak)
