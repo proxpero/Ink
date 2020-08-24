@@ -123,7 +123,7 @@ private extension MarkdownParser {
         case "<": return HTML.self
         case "^": return Aside.self
         case ">": return Blockquote.self
-        case "^": return Aside.self
+        case "§": return Section.self
         case "`": return CodeBlock.self
         case "-" where character == nextCharacter,
              "*" where character == nextCharacter:

@@ -128,6 +128,27 @@ final class TextFormattingTests: XCTestCase {
         XCTAssertEqual(html, "<aside><p>One Two Three</p></aside>")
     }
 
+    func testSectionHeading() {
+        let html = MarkdownParser().html(from: """
+        §§ My New Section
+        """)
+        let expectation = """
+        <h2 id='my-new-section'>My New Section</h2>
+        """
+        XCTAssertEqual(html, expectation)
+    }
+
+    func testSectionHeadingWithParagraph() {
+        let html = MarkdownParser().html(from: """
+        §§ My New Section
+        A paragraph
+        """)
+        let expectation = """
+        <h2 id='my-new-section'>My New Section</h2><p>A paragraph</p>
+        """
+        XCTAssertEqual(html, expectation)
+    }
+
     func testSingleLineBlockquote() {
         let html = MarkdownParser().html(from: "> Hello, world!")
         XCTAssertEqual(html, "<blockquote><p>Hello, world!</p></blockquote>")
@@ -141,21 +162,6 @@ final class TextFormattingTests: XCTestCase {
         """)
 
         XCTAssertEqual(html, "<blockquote><p>One Two Three</p></blockquote>")
-    }
-    
-    func testSingleLineAside() {
-        let html = MarkdownParser().html(from: "^ Hello, world!")
-        XCTAssertEqual(html, "<aside><p>Hello, world!</p></aside>")
-    }
-
-    func testMultiLineAside() {
-        let html = MarkdownParser().html(from: """
-        ^ One
-        ^ Two
-        ^ Three
-        """)
-
-        XCTAssertEqual(html, "<aside><p>One Two Three</p></aside>")
     }
 
     func testEscapingSymbolsWithBackslash() {
@@ -208,6 +214,8 @@ extension TextFormattingTests {
             ("testMultiLineBlockquote", testMultiLineBlockquote),
             ("testSingleLineAside", testSingleLineAside),
             ("testMultiLineAside", testMultiLineAside),
+            ("testSectionHeading", testSectionHeading),
+            ("testSectionHeadingWithParagraph", testSectionHeadingWithParagraph),
             ("testEscapingSymbolsWithBackslash", testEscapingSymbolsWithBackslash),
             ("testDoubleSpacedHardLinebreak", testDoubleSpacedHardLinebreak),
             ("testEscapedHardLinebreak", testEscapedHardLinebreak)
