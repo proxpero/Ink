@@ -133,7 +133,7 @@ final class TextFormattingTests: XCTestCase {
         §§ My New Section
         """)
         let expectation = """
-        <h2 id='my-new-section'>My New Section</h2>
+        <h2><a id='my-new-section' href='#my-new-section'>My New Section</a></h2>
         """
         XCTAssertEqual(html, expectation)
     }
@@ -144,7 +144,7 @@ final class TextFormattingTests: XCTestCase {
         A paragraph
         """)
         let expectation = """
-        <h2 id='my-new-section'>My New Section</h2><p>A paragraph</p>
+        <h2><a id='my-new-section' href='#my-new-section'>My New Section</a></h2><p>A paragraph</p>
         """
         XCTAssertEqual(html, expectation)
     }

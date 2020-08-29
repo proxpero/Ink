@@ -20,7 +20,7 @@ internal struct Section: Fragment {
         let body = stripTrailingMarkers(from: text.html(usingURLs: urls, modifiers: modifiers))
         let tagName = "h\(level)"
         let id = text.plainText().idValue
-        return "<\(tagName) id='\(id)'>\(body)</\(tagName)>"
+        return "<\(tagName)><a id='\(id)' href='#\(id)'>\(body)</a></\(tagName)>"
     }
 
     func plainText() -> String {
